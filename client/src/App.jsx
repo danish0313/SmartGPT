@@ -1,6 +1,7 @@
-import { useState, use, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useEffect } from "react";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -19,15 +20,15 @@ function App() {
 
   console.log(data);
   return (
-    <>
-      <div></div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        {data.map((x) => (
-          <p>{x}</p>
-        ))}
-      </div>
-    </>
+  <>
+  <BrowserRouter>
+    <Routes>
+       
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Routes>
+  </BrowserRouter>
+  </>
   );
 }
 
