@@ -8,10 +8,13 @@ dotenv.config();
 const app = express();
 mongoose.connect(`mongodb+srv://danishoodk_db_user:${process.env.DB_PASSWORD}@cluster0.snbtcha.mongodb.net/`)
   .then(() => console.log('Connected!'));
+  
 const corsOptions = {
-  origin: ["https://ai-asistant-mern-stack-app-1.onrender.com"],
+  origin: [
+    "https://ai-asistant-mern-stack-app.onrender.com",
+    "https://ai-asistant-mern-stack-app-1.onrender.com"
+  ],
 };
-
 app.use(cors(corsOptions));
 app.use(express.json());
 app.get("/api", (req, res) => {
