@@ -14,7 +14,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log(email, password);
-       axios.post('http://localhost:8080/login', { email, password })
+       axios.post('https://ai-asistant-mern-stack-app.onrender.com/login', { email, password })
             .then(response => {
                 if (response.data === "success") {
                  console.log('Login successful:', response.data);
@@ -38,7 +38,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 style={{ width: '100%', marginBottom: 8, padding: 6 }}
                 required
             />
-            <input
+            <input 
                 type="password"
                 placeholder="Password"
                 value={password}
