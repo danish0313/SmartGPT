@@ -31,44 +31,59 @@ const Register: React.FC = () => {
 
   return (
     <>
-      <h1>MERN STACK LOGIN & Registration!</h1>
-      <form onSubmit={handleSubmit} style={{ width: 220, margin: "2rem auto" }}>
-        <h2>Register</h2>
-        <div>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={form.username}
-            onChange={handleChange}
-            style={{ width: "100%", marginBottom: 8, padding: 6 }}
-            required
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            style={{ width: "100%", marginBottom: 8, padding: 6 }}
-            required
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            style={{ width: "100%", marginBottom: 8, padding: 6 }}
-            required
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+      <div
+        style={{
+          border: "1px solid black",
+          padding: "20px",
+          borderRadius: "10px",
+          width: "300px",
+          margin: "0 auto",
+          marginTop: "50px",
+          backgroundColor: "#f9f9f9",
+        }}
+      >
+        <h1>USER SIGNUP!</h1>
+        <form
+          onSubmit={handleSubmit}
+          style={{ width: 220, margin: "2rem auto" }}
+        >
+          <h2>Register</h2>
+          <div>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={form.username}
+              onChange={handleChange}
+              style={{ width: "100%", marginBottom: 8, padding: 6 }}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+              style={{ width: "100%", marginBottom: 8, padding: 6 }}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              style={{ width: "100%", marginBottom: 8, padding: 6 }}
+              required
+            />
+          </div>
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </>
   );
 };
