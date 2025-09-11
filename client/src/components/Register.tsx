@@ -18,10 +18,7 @@ const Register: React.FC = () => {
       return;
     }
     axios
-      .post(
-        "https://ai-asistant-mern-stack-app.onrender.com/registration",
-        form,
-      )
+      .post("http://localhost:8080/registration", form)
       .then((response) => {
         console.log("Registration successful:", response.data);
         navigate("/login");
