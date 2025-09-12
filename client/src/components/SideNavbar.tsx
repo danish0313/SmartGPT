@@ -10,6 +10,7 @@ import { AppContext } from "../contextApi/Context";
 
 const SideNavbar = () => {
   const [open, setOpen] = useState(false);
+
   // Get context value
   const context = useContext(AppContext);
 
@@ -22,9 +23,14 @@ const SideNavbar = () => {
   const { theme, setTheme } = context;
 
   console.log(theme);
+
+  // Conditional classes based on theme
+  const navbarClasses =
+    theme === "light" ? "bg-gray-100 text-black" : "bg-gray-800 text-white";
+
   return (
     <>
-      {/* Burger button */}
+      {/* Burger button for mobile */}
       <button
         className="md:hidden fixed top-4 left-4 z-50 p-2 rounded bg-gray-800 text-white"
         onClick={() => setOpen(!open)}
@@ -47,17 +53,17 @@ const SideNavbar = () => {
 
       {/* Sidebar */}
       <div
-        className={`ml-0 top-0 left-0 h-screen w-60  ${theme === "light" ? "bg-gray-100 text-black dark:text-white " : "bg-gray-750"} flex flex-col z-40 transition-transform duration-300
-        ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static border-r-2 border-gray-200`}
+        className={`ml-0 top-0 left-0 h-screen w-60 ${navbarClasses} flex flex-col z-40 transition-transform duration-300 
+        ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static border-r border-gray-200 fixed md:relative`}
       >
         {/* Logo Section */}
-        <div className="flex flex items-center p-3 border-b border-gray-700">
+        <div className="flex items-center p-3 border-b border-gray-700">
           <img
             src={logo} // If in public folder, use "/logo.png"
             alt="Logo"
-            className="h-15 w-15 ml-3 mr-3 "
+            className="h-15 w-15 ml-3 mr-3"
           />
-          <span className=" font-bold">
+          <span className="font-bold">
             SMARTCHAT <br />
             <p className="">OpenAI ChatBot</p>
           </span>
@@ -73,7 +79,6 @@ const SideNavbar = () => {
         </div>
 
         {/* Search Bar */}
-
         <div className="p-2">
           <div className="relative">
             <span className="absolute inset-y-0 left-0 bottom-2 flex items-center pl-2 mb-2">
@@ -105,48 +110,18 @@ const SideNavbar = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="w-full pl-10 pr-5 py-2 rounded  border-1 border-gray-700 text-white placeholder-gray-400 text-sm mb-4 outline-none  hover:ring-purple-400 transition"
+              className="w-full pl-10 pr-5 py-2 rounded border border-gray-700 text-white placeholder-gray-400 text-sm mb-4 outline-none hover:ring-purple-400 transition"
             />
           </div>
         </div>
-        {/* Recent chats */}
+
+        {/* Recent Chats, Community, Credits, etc. */}
         <RecentChats />
         <Community />
         <Credits />
         <Darkmode />
         <UserLogin />
-        {/* Navigation Links
-        <nav className="flex-1 flex flex-col gap-2 p-4">
-          <Link
-            to="/"
-            className="hover:bg-gray-700 rounded px-3 py-2"
-            onClick={() => setOpen(false)}
-          >
-            Register
-          </Link>
-          <Link
-            to="/login"
-            className="hover:bg-gray-700 rounded px-3 py-2"
-            onClick={() => setOpen(false)}
-          >
-            Login
-          </Link>
-          <Link
-            to="/home"
-            className="hover:bg-gray-700 rounded px-3 py-2"
-            onClick={() => setOpen(false)}
-          >
-            Home
-          </Link>
-        </nav> */}
       </div>
-      {/* Overlay for mobile
-      {open && (
-        <div
-          className="fixed inset-0 bg-white bg-opacity-40 z-30 md:hidden"
-          onClick={() => setOpen(false)}
-        />
-      )} */}
     </>
   );
 };

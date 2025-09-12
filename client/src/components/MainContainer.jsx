@@ -16,7 +16,7 @@ const MainContainer = () => {
   const { theme, setTheme } = context;
   return (
     <div
-      className={`flex-1 flex items-center justify-center m-5  ${theme === "light" ? "bg-gray-100 text-black dark:text-white " : "bg-gray-800"} rounded-lg border-2 border-gray-200`}
+      className={`flex-1 flex items-center justify-center m-5  ${theme === "light" ? "bg-gray-100 text-black dark:text-white " : "bg-gray-800"} rounded-lg border-1 border-gray-200`}
     >
       {/* Logo Section */}
 
@@ -25,7 +25,7 @@ const MainContainer = () => {
           <img
             src={theme === "dark" ? logoFull : logoFullDark} // If in public folder, use "/logo.png"
             alt="Logo"
-            className="ml-30 h-15"
+            className="ml-20 h-10"
           />
           <br />
           <h1 className="font-bold"> ASK ME ANYTHING !</h1>
