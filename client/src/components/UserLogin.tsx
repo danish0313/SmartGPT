@@ -1,17 +1,16 @@
 import React from "react";
-import galleryIcon from "../assets/gallery_icon.svg"; // Adjust the path as necessary
+import userIcon from "../assets/user_icon.svg"; // Adjust the path as necessary
 
-export default function Community() {
+export default function RecentChats() {
   return (
     <div>
-      <p className="mx-3"></p>
       <div className="p-4 rounded border border-grey-700 m-2 text-sm cursor-pointer hover:bg-gray-700 transition">
         <img
-          src={galleryIcon} // If in public folder, use "/logo.png"
+          src={userIcon} // If in public folder, use "/logo.png"
           alt="Logo"
           className="h-7 w-7 mr-2 inline-block"
         />
-        Community...
+        User Login Component
       </div>
     </div>
   );

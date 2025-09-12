@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg"; // Adjust the path as necessary
 import RecentChats from "./RecentChats";
 import Community from "./Community";
 import Credits from "./Credits";
+import Darkmode from "./Darkmode";
+import UserLogin from "./UserLogin";
+import { AppContext } from "../contextApi/Context";
 
 const SideNavbar = () => {
   const [open, setOpen] = useState(false);
+  // Get context value
+  const context = useContext(AppContext);
 
+  // If context is undefined, show an error or fallback UI
+  if (!context) {
+    return <div>Error: Context is not available!</div>;
+  }
+
+  // Destructure theme and setTheme once we know context is available
+  const { theme, setTheme } = context;
+
+  console.log(theme);
   return (
     <>
       {/* Burger button */}
@@ -33,23 +47,23 @@ const SideNavbar = () => {
 
       {/* Sidebar */}
       <div
-        className={`ml-0 top-0 left-0 h-screen w-60 bg-gray-800 text-white flex flex-col z-40 transition-transform duration-300
-        ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static`}
+        className={`ml-0 top-0 left-0 h-screen w-60  ${theme === "light" ? "bg-gray-100 text-black dark:text-white " : "bg-gray-750"} flex flex-col z-40 transition-transform duration-300
+        ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static border-r-2 border-gray-200`}
       >
         {/* Logo Section */}
-        <div className="flex items-center p-4 border-b border-gray-700">
+        <div className="flex flex items-center p-3 border-b border-gray-700">
           <img
             src={logo} // If in public folder, use "/logo.png"
             alt="Logo"
             className="h-15 w-15 ml-3 mr-3 "
           />
-          <span className="text-[#8563F7] font-bold">
+          <span className=" font-bold">
             SMARTCHAT <br />
-            <p className="text-white">OpenAI ChatBot</p>
+            <p className="">OpenAI ChatBot</p>
           </span>
         </div>
 
-        <div className="p-6 font-bold text-xl border-b border-gray-700">
+        <div className="p-3 font-bold text-xl border-b border-gray-700">
           <button
             className="bg-[#8563F7] text-white w-full py-2 rounded hover:bg-purple-600 transition"
             onClick={() => setOpen(false)}
@@ -60,7 +74,7 @@ const SideNavbar = () => {
 
         {/* Search Bar */}
 
-        <div className="p-4">
+        <div className="p-2">
           <div className="relative">
             <span className="absolute inset-y-0 left-0 bottom-2 flex items-center pl-2 mb-2">
               {/* Search icon (Heroicons or SVG) */}
@@ -91,7 +105,7 @@ const SideNavbar = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="w-full pl-10 pr-5 py-2 rounded bg-gray-700 text-white placeholder-gray-400 text-sm mb-4 hover:outline-none  hover:ring-purple-400 transition"
+              className="w-full pl-10 pr-5 py-2 rounded  border-1 border-gray-700 text-white placeholder-gray-400 text-sm mb-4 outline-none  hover:ring-purple-400 transition"
             />
           </div>
         </div>
@@ -99,7 +113,9 @@ const SideNavbar = () => {
         <RecentChats />
         <Community />
         <Credits />
-        {/* Navigation Links */}
+        <Darkmode />
+        <UserLogin />
+        {/* Navigation Links
         <nav className="flex-1 flex flex-col gap-2 p-4">
           <Link
             to="/"
@@ -122,7 +138,7 @@ const SideNavbar = () => {
           >
             Home
           </Link>
-        </nav>
+        </nav> */}
       </div>
       {/* Overlay for mobile
       {open && (
