@@ -5,7 +5,7 @@ export default function Community() {
   return (
     <div>
       <p className="mx-3"></p>
-      <div className="p-4 rounded border border-grey-700 m-2 text-sm cursor-pointer hover:bg-gray-700 transition">
+      <div className="p-1 rounded border border-grey-700 m-2 text-sm cursor-pointer hover:bg-gray-700 transition">
         <img
           src={galleryIcon} // If in public folder, use "/logo.png"
           alt="Logo"

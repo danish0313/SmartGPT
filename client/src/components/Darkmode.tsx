@@ -33,7 +33,7 @@ export default function RecentChats() {
 
   return (
     <div>
-      <div className="flex items-center gap-2 p-4 rounded border border-grey-700 m-2 text-sm cursor-pointer hover:bg-gray-700 transition">
+      <div className="flex items-center gap-2 p-1 rounded border border-grey-700 m-2 text-sm cursor-pointer hover:bg-gray-700 transition">
         <img
           src={themeIcon} // If in public folder, use "/logo.png"
           alt="Logo"

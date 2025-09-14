@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const Register: React.FC = () => {
@@ -82,6 +82,10 @@ const Register: React.FC = () => {
             />
           </div>
           <button type="submit">Register</button>
+          <Link to={"/"}>
+            <br />
+            <p>Login Existing Account</p>
+          </Link>
         </form>
       </div>
     </>

@@ -1,12 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Home from "./components/MainContainer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import SideNavbar from "./components/SideNavbar";
 import MainContainer from "./components/MainContainer";
-import ContextProvider from "./contextApi/Context";
+import "./assets/prism.css";
 
 function App() {
   const [data, setData] = useState(null);
@@ -22,29 +21,35 @@ function App() {
     fetchData();
   }, []);
 
-  console.log(data);
+  const user = localStorage.getItem("login");
+  console.log(user);
+  const SmartChatDashboard = (
+    <div className="flex min-h-screen">
+      {/* Sidebar */}
+      <div className=" fixed w-1/6 h-screen m-2">
+        <SideNavbar />
+      </div>
+      <div className=" w-5/6 ml-auto  ">
+        <MainContainer />
+      </div>
+      {/* Main Content */}
+    </div>
+  );
 
   return (
     <>
-      <ContextProvider>
-        <BrowserRouter>
-          <div className="flex min-h-screen bg-gray-900 text-white">
-            {/* Sidebar */}
-            <div className="w-1/6 h-screen">
-              <SideNavbar />
-            </div>
-            {/* Main Content */}
-            <MainContainer />
-          </div>
+      <BrowserRouter>
+        {user === "success" ? (
+          SmartChatDashboard
+        ) : (
           <div className="">
             <Routes>
-              <Route path="/" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/home" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<Login />} />
             </Routes>
           </div>
-        </BrowserRouter>
-      </ContextProvider>
+        )}
+      </BrowserRouter>
     </>
   );
 }

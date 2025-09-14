@@ -1,3 +1,4 @@
+@import "tailwindcss";
 h1 {
   font-size: 2.2em;
   line-height: 1.1;
@@ -29,4 +30,15 @@ button:focus-visible {
   a:hover {
     color: #4f5066;
   }
+}
+
+.reset-tw :not(pre) :not(code) {
+  all: revert;
+}
+
+.loader > div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loader > div:nth-child(3) {
+  animation-delay: 0.4s;
 }

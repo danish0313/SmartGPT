@@ -10,6 +10,7 @@ import { AppContext } from "../contextApi/Context";
 
 const SideNavbar = () => {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   // Get context value
   const context = useContext(AppContext);
@@ -26,7 +27,7 @@ const SideNavbar = () => {
 
   // Conditional classes based on theme
   const navbarClasses =
-    theme === "light" ? "bg-gray-100 text-black" : "bg-gray-800 text-white";
+    theme === "light" ? "bg-gray-200 text-black" : "bg-gray-900 text-white";
 
   return (
     <>
@@ -53,7 +54,7 @@ const SideNavbar = () => {
 
       {/* Sidebar */}
       <div
-        className={`ml-0 top-0 left-0 h-screen w-60 ${navbarClasses} flex flex-col z-40 transition-transform duration-300 
+        className={`ml-0 top-0 left-0 h-screen w-60 rounded-lg border-1 border-gray-200 ${navbarClasses} flex flex-col z-40 transition-transform duration-300 
         ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static border-r border-gray-200 fixed md:relative`}
       >
         {/* Logo Section */}
@@ -69,7 +70,7 @@ const SideNavbar = () => {
           </span>
         </div>
 
-        <div className="p-3 font-bold text-xl border-b border-gray-700">
+        <div className="p-2 font-bold text-xl border-b border-gray-700">
           <button
             className="bg-[#8563F7] text-white w-full py-2 rounded hover:bg-purple-600 transition"
             onClick={() => setOpen(false)}
@@ -109,6 +110,7 @@ const SideNavbar = () => {
             </span>
             <input
               type="text"
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
               className="w-full pl-10 pr-5 py-2 rounded border border-gray-700 text-white placeholder-gray-400 text-sm mb-4 outline-none hover:ring-purple-400 transition"
             />
@@ -116,7 +118,8 @@ const SideNavbar = () => {
         </div>
 
         {/* Recent Chats, Community, Credits, etc. */}
-        <RecentChats />
+        <RecentChats search={search} />
+        <br />
         <Community />
         <Credits />
         <Darkmode />

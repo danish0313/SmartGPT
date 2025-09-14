@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { AppContext } from "../contextApi/Context";
 interface LoginProps {
   onLogin?: (username: string, password: string) => void;
 }
@@ -10,6 +12,16 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate(); // Initialize the navigate function
+  // Get context value
+  const context = useContext(AppContext);
+
+  // If context is undefined, show an error or fallback UI
+  if (!context) {
+    return <div>Error: Context is not available!</div>;
+  }
+
+  // Destructure setUserLogin once we know context is available
+  const { setUserLogin } = context;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,8 +30,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       .post("http://localhost:8080/login", { email, password })
       .then((response) => {
         if (response.data === "success") {
+          setUserLogin("success"); // Update context with the logged-in user's email
+          localStorage.setItem("login", "success");
           console.log("Login successful:", response.data);
-          navigate("/home"); // Navigate to the register page
+          navigate("/"); // Navigate to the register page
         } else {
           alert("Invalid credentials!");
         }
@@ -27,8 +41,18 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <>
-      <h1>MERN STACK LOGIN & Registration!</h1>
+    <div
+      style={{
+        border: "1px solid black",
+        padding: "20px",
+        borderRadius: "10px",
+        width: "300px",
+        margin: "0 auto",
+        marginTop: "50px",
+        backgroundColor: "#f9f9f9",
+      }}
+    >
+      <h1>LOGIN TO SMARTCHAT</h1>
       <form onSubmit={handleSubmit} style={{ width: 220, margin: "2rem auto" }}>
         <input
           type="email"
@@ -49,8 +73,12 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         <button type="submit" style={{ width: "100%", padding: 6 }}>
           Login
         </button>
+        <br />
+        <Link to={"/register"}>
+          <p>Register new Account</p>
+        </Link>
       </form>
-    </>
+    </div>
   );
 };
 
