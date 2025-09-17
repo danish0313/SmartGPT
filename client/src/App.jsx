@@ -6,6 +6,7 @@ import "./App.css";
 import SideNavbar from "./components/SideNavbar";
 import MainContainer from "./components/MainContainer";
 import "./assets/prism.css";
+import CommunityImages from "./components/CommunityImages";
 
 function App() {
   const [data, setData] = useState(null);
@@ -30,7 +31,10 @@ function App() {
         <SideNavbar />
       </div>
       <div className=" w-5/6 ml-auto  ">
-        <MainContainer />
+        <Routes>
+          <Route path="/" element={<MainContainer />} />
+          <Route path="/communityImages" element={<CommunityImages />} />
+        </Routes>
       </div>
       {/* Main Content */}
     </div>

@@ -43,9 +43,9 @@ function ChatBox({ messages }: any) {
           className="flex items-start justify-end my-4 gap-2"
         >
           <div className="flex flex-col gap-2 p-2 px-4 bg-slate-50 dark:bg-[#57317C]/30 border border-[#80609F]/30 rounded-md max-w-2xl">
-            <p className={`text-sm ${navbarClasses}`}>
+            <span className={`text-sm ${navbarClasses}`}>
               <ReactMarkdown>{messages?.content}</ReactMarkdown>
-            </p>
+            </span>
             <span className="text-sm text-gray-400 dark:text-[#B1A6C0]">
               {moment(messages?.timestamp).fromNow()}
             </span>

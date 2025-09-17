@@ -7,7 +7,7 @@ import sendIcon from "../assets/send_icon.svg"; // Adjust the path as necessary
 
 const MainContainer = () => {
   const [prompt, setPrompt] = useState("");
-  const [published, setPublished] = useState("");
+  const [published, setPublished] = useState(false);
   const [mode, setMode] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -41,54 +41,68 @@ const MainContainer = () => {
   return (
     <>
       <div
-        className={`mb-5 m-2 h-110 overflow-y-scroll pl-40 pr-40 ${theme === "light" ? "bg-gray-100 text-black " : "bg-gray-800 text-white"} rounded-lg border-2 border-gray-200`}
+        className={`mb-5 mt-2 text-sm overflow-y-scroll px-8 sm:px-10 md:px-20 lg:px-40
+           ${theme === "light" ? "bg-gray-100 text-black" : "bg-gray-800 text-white"} rounded-lg border-2 border-gray-200`}
       >
         {user === "success"
           ? UserChats?.messages?.map((messages, id) => (
               <ChatBox key={id} messages={messages} />
             ))
           : newUser}
-        <div class=" loader flex space-x-2 items-center justify-center">
-          <div class="w-2.5 h-2.5 rounded-full bg-gray-700 animate-bounce delay-0.1s"></div>
-          <div class="w-2.5 h-2.5 rounded-full bg-gray-700 animate-bounce delay-0.2s"></div>
-          <div class="w-2.5 h-2.5 rounded-full bg-gray-700 animate-bounce delay-0.4s"></div>
-        </div>
+
+        {loading === true ? (
+          <div class=" loader flex space-x-2 items-center justify-start">
+            <div class="w-2.5 h-2.5 rounded-full bg-gray-700 animate-bounce delay-0.1s"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-gray-700 animate-bounce delay-0.2s"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-gray-700 animate-bounce delay-0.4s"></div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       {/* label for checkbox */}
-      <label className="flex items-center justify-center gap-2 mb-3 text-sm mx-auto">
-        <p className="text-sm"> Published generate image to Community</p>
-        <input type="checkbox" checked={published} className="cursor-pointer" />
-      </label>
+      {mode === "images" ? (
+        <label className="flex items-center justify-center gap-2 mb-3 text-sm mx-auto">
+          <p className="text-sm"> Published generate image to Community</p>
+          <input
+            type="checkbox"
+            onChange={(e) => setPublished(e.target.checked)}
+            checked={published}
+            className="cursor-pointer"
+          />
+        </label>
+      ) : (
+        ""
+      )}
       <div
-        className={`flex items-center justify-center m-2 w-2/3 ml-auto mr-auto ${theme === "light" ? "bg-gray-100 text-black " : "bg-gray-800 text-white"}`}
+        className={`flex items-center justify-center m-2 w-full sm:w-4/5 md:w-2/3 ml-auto mr-auto  ${theme === "light" ? "bg-gray-100 text-black" : "bg-gray-800 text-white"}`}
       >
         {/* searhbar */}
         <div
-          class={`flex space-x-2 px-4 py-2 rounded-md shadow-sm w-full ${theme === "light" ? "bg-gray-100 text-black " : "bg-gray-800 text-white"}`}
+          className={`flex space-x-2 px-4 py-2 rounded-md shadow-sm w-full ${theme === "light" ? "bg-gray-100 text-black" : "bg-gray-800 text-white"}`}
         >
           <select
             onChange={(e) => setMode(e.target.value)}
-            class={`bg-gray-100 text-gray-700 text-sm focus:outline-none ${theme === "light" ? "bg-gray-100 text-black " : "bg-gray-800 text-white"}`}
+            className={`bg-gray-100 text-gray-700 text-sm focus:outline-none ${theme === "light" ? "bg-gray-100 text-black " : "bg-gray-800 text-white"}`}
           >
-            <option value="all">All</option>
-            <option value="articles">Articles</option>
-            <option value="products">Products</option>
-            <option value="users">Users</option>
+            <option value="text">Text</option>
+            <option value="images">Images</option>
           </select>
 
           <div
-            class={`w-px h-5 ${theme === "light" ? "bg-gray-100 text-black " : "bg-gray-800 text-white"}`}
+            className={`w-px h-5 ${theme === "light" ? "bg-gray-100 text-black " : "bg-gray-800 text-white"}`}
           ></div>
 
           <input
             type="text"
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Search..."
-            class={`text-sm  flex-1 focus:outline-none ${theme === "light" ? "bg-gray-100 text-black " : "bg-gray-800 text-white"}`}
+            className={`text-sm flex-1 bg-transparent focus:outline-none 
+        ${theme === "light" ? "text-black" : "text-white"}`}
           />
 
-          <button class="focus:outline-none">
-            <img src={sendIcon} alt="search" className="h-7 w-7" />
+          <button className="focus:outline-none">
+            <img src={sendIcon} alt="search" className="h-6 w-6" />
           </button>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AppContext } from "../contextApi/Context";
 import binIcon from "../assets/bin_icon.svg";
 import moment from "moment";
+import { useNavigate } from "react-router";
 interface RecentChatsProps {
   search: string;
 }
@@ -17,13 +18,14 @@ export default function RecentChats({ search }: RecentChatsProps) {
 
   // Destructure theme and setTheme once we know context is available
   const { RecentChats, setUserChats } = context;
-
+  const navigate = useNavigate();
   const handleChatSelect = (chat: any) => {
     // Implement chat selection logic here
     const chats = RecentChats.find((c: any) => c._id === chat);
     if (chats) {
       setUserChats(chats);
     }
+    navigate("/");
   };
   return (
     <div className="flex-1  overflow-y-scroll">
