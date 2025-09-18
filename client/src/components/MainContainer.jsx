@@ -24,8 +24,8 @@ const MainContainer = () => {
   const user = localStorage.getItem("login");
   const chatbox = <ChatBox />;
 
-  const newUser = (
-    <div className="flex flex-col items-center justify-center">
+  const newChat = (
+    <div className="flex flex-col items-center justify-center h-100">
       <div>
         <img
           src={theme === "dark" ? logoFull : logoFullDark} // If in public folder, use "/logo.png"
@@ -37,18 +37,18 @@ const MainContainer = () => {
       </div>
     </div>
   );
-
+  console.log(UserChats.messages);
   return (
     <>
       <div
-        className={`mb-5 mt-2 text-sm overflow-y-scroll px-8 sm:px-10 md:px-20 lg:px-40
+        className={`mb-5 mt-2 h-130 text-sm overflow-y-scroll px-8 sm:px-10 md:px-20 lg:px-40
            ${theme === "light" ? "bg-gray-100 text-black" : "bg-gray-800 text-white"} rounded-lg border-2 border-gray-200`}
       >
-        {user === "success"
+        {UserChats.messages?.length > 0
           ? UserChats?.messages?.map((messages, id) => (
               <ChatBox key={id} messages={messages} />
             ))
-          : newUser}
+          : newChat}
 
         {loading === true ? (
           <div class=" loader flex space-x-2 items-center justify-start">

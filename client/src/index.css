@@ -14,13 +14,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #535467;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -41,4 +34,7 @@ button:focus-visible {
 }
 .loader > div:nth-child(3) {
   animation-delay: 0.4s;
+}
+.plans > div:nth-child(3) {
+  background-color: #59168b;
 }

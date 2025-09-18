@@ -7,6 +7,7 @@ import SideNavbar from "./components/SideNavbar";
 import MainContainer from "./components/MainContainer";
 import "./assets/prism.css";
 import CommunityImages from "./components/CommunityImages";
+import CreditPlans from "./components/CreditPlans";
 
 function App() {
   const [data, setData] = useState(null);
@@ -27,13 +28,14 @@ function App() {
   const SmartChatDashboard = (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <div className=" fixed w-1/6 h-screen m-2">
+      <div className="fixed z-100 w-1/6 h-screen m-2">
         <SideNavbar />
       </div>
-      <div className=" w-5/6 ml-auto  ">
+      <div className="w-full sm:w-5/6  ml-auto">
         <Routes>
           <Route path="/" element={<MainContainer />} />
           <Route path="/communityImages" element={<CommunityImages />} />
+          <Route path="/credits" element={<CreditPlans />} />
         </Routes>
       </div>
       {/* Main Content */}

@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg"; // Adjust the path as necessary
 import RecentChats from "./RecentChats";
 import Community from "./Community";
@@ -33,7 +32,7 @@ const SideNavbar = () => {
     <>
       {/* Burger button for mobile */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded bg-gray-800 text-white"
+        className={`md:hidden fixed top-4 left-4 z-50 p-2 rounded ${navbarClasses}`}
         onClick={() => setOpen(!open)}
         aria-label="Toggle sidebar"
       >
@@ -54,7 +53,7 @@ const SideNavbar = () => {
 
       {/* Sidebar */}
       <div
-        className={`ml-0 top-0 left-0 h-screen w-60 rounded-lg border-1 border-gray-200 ${navbarClasses} flex flex-col z-40 transition-transform duration-300 
+        className={`ml-0 top-0 left-0 h-screen w-55 rounded-lg ${navbarClasses} flex flex-col z-40 transition-transform duration-300 
         ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static border-r border-gray-200 fixed md:relative`}
       >
         {/* Logo Section */}
